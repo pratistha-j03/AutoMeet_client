@@ -80,17 +80,17 @@ const MeetingView = () => {
       </section>
 
       {/* PHASE 2: SUMMARY (Only show if transcript exists) */}
-      {data.transcript && (
+      {data.responseData.transcript && (
         <section className="card">
           <h2>2. AI Intelligence</h2>
-          {data.summary ? (
+          {data.responseData.summary ? (
             <div className="summary-box">
               <h3>Summary</h3>
-              <p>{data.summary.summaryText}</p>
-              
+              <p>{data.responseData.summary.summaryText}</p>
+
               <h3>Action Items</h3>
               <ul>
-                {data.summary.actionItems.map((item, i) => (
+                {data.responseData.summary.actionItems.map((item, i) => (
                   <li key={i}>
                     <strong>{item.owner}</strong>: {item.description}
                   </li>
