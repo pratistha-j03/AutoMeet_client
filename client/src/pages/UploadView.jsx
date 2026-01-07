@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { uploadMeeting } from '../api'; // Adjust path if needed
+import { uploadMeeting } from '../api'; 
 import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
-  const [title, setTitle] = useState(''); // <--- New State for Title
+  const [title, setTitle] = useState(''); 
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Upload = () => {
     
     const formData = new FormData();
     formData.append('audio', file); 
-    formData.append('title', title || file.name); // <--- Send Title (default to filename if empty)
+    formData.append('title', title || file.name); 
 
     try {
       const res = await uploadMeeting(formData);
