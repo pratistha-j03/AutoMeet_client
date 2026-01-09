@@ -31,37 +31,103 @@ const Login = () => {
   };
 
   return (
-    <div className="container" style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center' }}>
-      <div className="card">
-        <h2>Welcome Back</h2>
-        <form onSubmit={handleSubmit}>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required 
-            style={{ display: 'block', width: '100%', padding: '10px', marginBottom: '10px' }}
-          />
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="Password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required 
-            style={{ display: 'block', width: '100%', padding: '10px', marginBottom: '20px' }}
-          />
-          
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Logo/Brand Section */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 shadow-lg shadow-blue-500/30">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold text-white mb-2">AutoMeet</h1>
+          <p className="text-slate-400 text-sm">Intelligent Meeting Management</p>
+        </div>
 
-          <button type="submit" disabled={loading} className="btn-primary" style={{ width: '100%' }}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-        <p style={{ marginTop: '15px' }}>
-          New here? <Link to="/register">Create an account</Link>
+        {/* Login Card */}
+        <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/50 p-8">
+          <h2 className="text-2xl font-semibold text-white mb-6">Welcome Back</h2>
+          
+          <div className="space-y-5">
+            {/* Email Input */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              />
+            </div>
+
+            {/* Password Input */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="••••••••"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              />
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/50 rounded-lg px-4 py-3">
+                <p className="text-red-400 text-sm">{error}</p>
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/30"
+            >
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Logging in...
+                </span>
+              ) : (
+                'Login'
+              )}
+            </button>
+          </div>
+
+          {/* Sign Up Link */}
+          <div className="mt-6 text-center">
+            <p className="text-slate-400 text-sm">
+              New here?{' '}
+              <Link 
+                to="/register" 
+                className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              >
+                Create an account
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-center text-slate-500 text-xs mt-8">
+          Secure login powered by AutoMeet
         </p>
       </div>
     </div>
