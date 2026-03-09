@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { uploadMeeting } from '../api';
+import { uploadMeeting, processMeeting } from '../api';
 import { useNavigate } from 'react-router-dom';
 
 const RecordMeeting = () => {
@@ -92,7 +92,7 @@ const RecordMeeting = () => {
     try {
       console.log("Uploading to Cloudinary...");
       const res = await uploadMeeting(formData);
-      
+      await processMeeting(res.data.meetingId);
       // Navigate to the Meeting Dashboard
       navigate(`/meeting/${res.data.meetingId}`);
     } catch (error) {

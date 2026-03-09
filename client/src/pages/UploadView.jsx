@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uploadMeeting } from '../api'; 
+import { processMeeting, uploadMeeting } from '../api'; 
 import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
@@ -25,6 +25,7 @@ const Upload = () => {
       
       // Ensure we actually have an ID before navigating
       if (res.data && res.data.meetingId) {
+        await processMeeting(res.data.meetingId);
         navigate(`/meeting/${res.data.meetingId}`);
       } else {
         throw new Error("No meeting ID returned from server");

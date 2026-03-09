@@ -25,10 +25,10 @@ export const uploadMeeting = (formData) => API.post('/meetings/upload-audio', fo
 // 2. Get Single Meeting Details
 export const getMeeting = (id) => API.get(`/meetings/${id}`);
 
-// 3. Trigger Transcription (Phase 1)
-export const transcribeMeeting = (id) => API.post(`/ai/${id}/transcribe`);
+// 3. Trigger Transcription + Summary
+export const processMeeting = (id) => API.post(`/ai/${id}/process`);
 
-// 4. Trigger Summary (Phase 2)
-export const generateSummary = (id) => API.post(`/ai/${id}/generate-summary`);
+// 4. Status
+export const getMeetingStatus = (id) => API.post(`/ai/${id}/status`);
 
 export default API;
